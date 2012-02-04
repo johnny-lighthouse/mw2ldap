@@ -24,7 +24,7 @@ while (<DATAFILE>) {
 
 	# for each line find username, email, and group
 	
-	if ($_ =~ /(username) whitespace => whitespace (email) whitespace :B:alphanum:[zero or more non whitespace] whitespace (group name) /i)
+	if ($_ =~ /(\w+)\s+=>\s+(\w+@\S+)\s+:B:\w+:\w*\s+(\w+)/i)
 
 		{
 		my($username) = $1;
