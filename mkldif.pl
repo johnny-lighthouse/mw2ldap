@@ -29,7 +29,7 @@ while (<DATAFILE>) {
 
 	# for each line find username, email, and group
 	
-	if ($_ =~ /(\w+)\s+=>\s+(\w+@\S+)\s+:B:\w+:\w*\s+(\w+)/i)
+	if ($_ =~ /(\S+)\s+=>\s+(\S+@\S+)\s+:B:\w+:\w*\s+(\w+)/i)
 
 		{
 		$username = $1;
