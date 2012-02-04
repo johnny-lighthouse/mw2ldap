@@ -12,6 +12,11 @@ use warnings;
 
 open (DATAFILE, 'pretty_combined');
 
+#setup variables for use in loop
+my $username;
+my $email;
+my $group;
+
 # loop through by line
 
 while (<DATAFILE>) {
@@ -27,9 +32,9 @@ while (<DATAFILE>) {
 	if ($_ =~ /(\w+)\s+=>\s+(\w+@\S+)\s+:B:\w+:\w*\s+(\w+)/i)
 
 		{
-		my($username) = $1;
-		my($email) = $2;
-		my($group) = $3
+		$username = $1;
+		$email = $2;
+		$group = $3
 
 		}
 
