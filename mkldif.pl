@@ -43,12 +43,22 @@ while (<DATAFILE>) {
 
 	# create ldif for user
 
+	print "\n";
+
+	print "dn: uid=" . $username . ",ou=x,dc=y,dc=z,dc=com\n";
+	print "uid: " . $username . "\n";
+	print "sn: " . $username . "\n"; 
+	print "objectClass: top\n";
+	print "objectClass: person\n";
+	print "objectClass: inetOrgPerson\n";
+	print "mail: " . $email . "\n";
+
 	# create group if not seen before
 
 	# add user to group if it exists
 
 	#indicate completion of loop
-	print "end of loop\n\n";
+	print "\n\n";
 
 	}
 
