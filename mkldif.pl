@@ -11,6 +11,9 @@ use warnings;
 # open file containing user info
 open (DATAFILE, 'user-data.txt');
 
+#declare hash to hold user / group info
+my %groupshash = (); #not named groups to differentiate from $group variable
+
 # loop through by line
 while (<DATAFILE>) {
 
@@ -41,14 +44,9 @@ while (<DATAFILE>) {
 		print "objectClass: person\n";
 		print "objectClass: inetOrgPerson\n";
 		print "mail: " . $email . "\n\n";
-
-		# create group if not seen before
-			#can we check to see if $group exists in an interloop persistent data structure (hash, array, etc)
-			#if not then add it
-		# add user to group if it exists
-			#we really want to create group all at once so the memebrs are grouped together in the ldap output
-			#can we store dn and group in a persistent structure and create groups after processing all lines?
-			#can i use one structure for both?  there an easy way to list unique values in a multi fielded structure?
+		
+		#add line info to hash
+		$groupshash{$username} = $group unless exists $groupshash{$username} ;
 
 	   }
 
@@ -56,6 +54,16 @@ while (<DATAFILE>) {
 	#print "\n\n";
 
     }
+
+#print hash as check
+my $key;
+foreach $key (keys %groupshash) {
+ 	 print "Key: $key, Value: \$$groupshash{$key}\n"; }
+
+#identify all unique values.
+#create group for each unique value.  use array?
+#iterate through hash and add user to appropriate group array
+#create ldif print for each array and include contents of array as member records
 
 #close open files and any other cleanup
 close (DATAFILE);
