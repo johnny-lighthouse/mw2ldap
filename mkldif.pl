@@ -60,10 +60,9 @@ my $key;
 foreach $key (keys %groupshash) {
  	 print "Key: $key, Value: \$$groupshash{$key}\n"; }
 
-#identify all unique values.
-#create group for each unique value.  use array?
-#iterate through hash and add user to appropriate group array
-#create ldif print for each array and include contents of array as member records
+#create new hash with group name as key and values are arrays of memebrs
+
+#create ldif print for each group key with contents of value array as member records
 
 #close open files and any other cleanup
 close (DATAFILE);
