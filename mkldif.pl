@@ -18,7 +18,7 @@ my %groupshash = (); #not named groups to differentiate from $group variable
 while (<DATAFILE>) {
 
 	# print the whole line to demonstrate proper read
-	print "$_";
+	#print "$_";
 
 	# initialize variables
 	my $username;
@@ -34,7 +34,7 @@ while (<DATAFILE>) {
 		$group = $3;
 
 		#print variables to verify correct operation
-		print "Set username= " . $username . " Set email= " . $email . " Set group= " . $group . "\n";
+		#print "Set username= " . $username . " Set email= " . $email . " Set group= " . $group . "\n";
 
 		# create ldif for user
 		print "dn: uid=" . $username . ",ou=x,dc=y,dc=z,dc=com\n";
@@ -55,13 +55,17 @@ while (<DATAFILE>) {
 
     }
 
-#print hash of user and group as check
+# variable for use in unpacking hashes
 my $key;
+
+#print hash of user and group as check
 #foreach $key (keys %groupshash) {
 # 	 print "Key: $key, Value: \$$groupshash{$key}\n"; }
 
 
 #create new hash of group and memebrs
+#
+
 my %uniquegroups;
 foreach $key ( keys %groupshash ) {
 	push @{ $uniquegroups{ $groupshash{$key} } }, $key; }
@@ -77,8 +81,7 @@ foreach $key ( keys %groupshash ) {
 #               print "\t$_\n"; }
 #   }
 
-
-#print hash of group / members
+#print hash of group / members another way
 #foreach $key (keys %uniquegroups) {
 #	print "members of group $key are:\n"; 
 #	foreach (@{$uniquegroups{$key}}) {
@@ -98,7 +101,5 @@ foreach $key (keys %uniquegroups) {
 	print "\n";
     }
      
-
-
-#close open files and any other cleanup
+#close open file
 close (DATAFILE);
