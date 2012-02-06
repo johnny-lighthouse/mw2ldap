@@ -66,25 +66,39 @@ my %uniquegroups;
 foreach $key ( keys %groupshash ) {
 	push @{ $uniquegroups{ $groupshash{$key} } }, $key; }
 
-#false start
-#my $value;
-#while (($key, $value) = each %uniquegroups) {
-#	
-#	#print key
-#	print "key= $key\n";
-#	
-#	#print each member of value array
-#
-#   }
 
 #print hash of group / members
-foreach $key (keys %uniquegroups) {
-	print "members of group $key are:\n"; 
-	foreach (@{$uniquegroups{$key}}) {
- 	 	print "\t$_\n"; }
-            }
+#my $value;
+#while (($key, $value) = each %uniquegroups) {
+#	# print key
+#	print "members of group $key are:\n";
+#	# print each member of value array
+#	foreach (@{$uniquegroups{$key}}) {
+#               print "\t$_\n"; }
+#   }
+
+
+#print hash of group / members
+#foreach $key (keys %uniquegroups) {
+#	print "members of group $key are:\n"; 
+#	foreach (@{$uniquegroups{$key}}) {
+# 	 	print "\t$_\n"; }
+#            }
 
 #create ldif print for each group key with contents of value array as member records
+
+foreach $key (keys %uniquegroups) {
+	print "dn: cn=$key,ou=x,dc=y,dc=z,dc=com\n";
+	print "objectclass: groupofnames\n";
+	print "cn: $key\n";
+	print "description: \n";
+
+	foreach (@{$uniquegroups{$key}}) {
+		print "member: uid=$_,ou=x,dc=y,dc=z,dc=com\n"; }
+	print "\n";
+    }
+     
+
 
 #close open files and any other cleanup
 close (DATAFILE);
