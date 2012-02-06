@@ -55,23 +55,16 @@ while (<DATAFILE>) {
 
     }
 
-#print hash as check
+#print hash of user and group as check
 my $key;
 #foreach $key (keys %groupshash) {
 # 	 print "Key: $key, Value: \$$groupshash{$key}\n"; }
 
-#create new hash with group name as key and values are arrays of memebrs
+
+#create new hash of group and memebrs
 my %uniquegroups;
 foreach $key ( keys %groupshash ) {
 	push @{ $uniquegroups{ $groupshash{$key} } }, $key; }
-
-#working
-#foreach my $group (keys %uniquegroups) {
-#    print "The members of $group are\n";
- #   foreach (@{$uniquegroups{$group}}) {
-#        print "\t$_\n";
- #   }
-#}
 
 #false start
 #my $value;
@@ -82,16 +75,14 @@ foreach $key ( keys %groupshash ) {
 #	
 #	#print each member of value array
 #
- #   }
+#   }
 
-#working
+#print hash of group / members
 foreach $key (keys %uniquegroups) {
-	print "Key: $key\n"; 
-	my @temp;
-	@temp = @{$uniquegroups{$key}};
-	foreach (@temp) {
- 	 	print "FLARN\n"};#Key: $key\n"; }
-     }
+	print "members of group $key are:\n"; 
+	foreach (@{$uniquegroups{$key}}) {
+ 	 	print "\t$_\n"; }
+            }
 
 #create ldif print for each group key with contents of value array as member records
 
