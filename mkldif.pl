@@ -7,7 +7,6 @@
 
 use strict;
 use warnings;
-use Data::Dumper;
 
 # open file containing user info
 open (DATAFILE, 'user-data.txt');
@@ -58,17 +57,41 @@ while (<DATAFILE>) {
 
 #print hash as check
 my $key;
-foreach $key (keys %groupshash) {
- 	 print "Key: $key, Value: \$$groupshash{$key}\n"; }
+#foreach $key (keys %groupshash) {
+# 	 print "Key: $key, Value: \$$groupshash{$key}\n"; }
 
 #create new hash with group name as key and values are arrays of memebrs
-
 my %uniquegroups;
-foreach my $key ( keys %groupshash ) {
-    push @{ $uniquegroups{ $groupshash{$key} } }, $key;
-} ## end foreach my $key ( keys %groupshash)
-print "Inverted hash\n", Dumper( \%uniquegroups );
+foreach $key ( keys %groupshash ) {
+	push @{ $uniquegroups{ $groupshash{$key} } }, $key; }
 
+#working
+#foreach my $group (keys %uniquegroups) {
+#    print "The members of $group are\n";
+ #   foreach (@{$uniquegroups{$group}}) {
+#        print "\t$_\n";
+ #   }
+#}
+
+#false start
+#my $value;
+#while (($key, $value) = each %uniquegroups) {
+#	
+#	#print key
+#	print "key= $key\n";
+#	
+#	#print each member of value array
+#
+ #   }
+
+#working
+foreach $key (keys %uniquegroups) {
+	print "Key: $key\n"; 
+	my @temp;
+	@temp = @{$uniquegroups{$key}};
+	foreach (@temp) {
+ 	 	print "FLARN\n"};#Key: $key\n"; }
+     }
 
 #create ldif print for each group key with contents of value array as member records
 
