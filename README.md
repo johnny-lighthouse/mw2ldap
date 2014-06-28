@@ -3,4 +3,6 @@ mw2ldap
 
 Mediawiki to LDAP
 
-harvest user information from mediawiki and format for import to ldap
+mkldif.pl parses mediawiki user data and creates ldif input suitable to feed to a LDAP instance.
+
+hashconvert.pl  takes hashed passwords and manipulates them in various ways to confirm my understanding of password storage in mediawiki and ldap.  This is a proff of concept and does not produce useful output.
